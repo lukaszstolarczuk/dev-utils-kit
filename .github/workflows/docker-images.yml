@@ -9,9 +9,8 @@ on:
 
 env:
   REPO:           dev-utils-kit
-  GITHUB_REPO:    pmem/dev-utils-kit
-  # XXX: perhaps change "/dev-utils-kit" below into "/pmem" - this is just a "package" name
-  CONTAINER_REG:  ghcr.io/pmem/dev-utils-kit
+  GITHUB_REPO:    lukaszstolarczuk/dev-utils-kit
+  CONTAINER_REG:  ghcr.io/lukaszstolarczuk/dev-utils-kit
   # use org's Private Access Token to log in to GitHub Container Registry
   CONTAINER_REG_USER:   ${{ secrets.GH_CR_USER }}
   CONTAINER_REG_PASS:   ${{ secrets.GH_CR_PAT }}

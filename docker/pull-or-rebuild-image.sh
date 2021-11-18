@@ -61,10 +61,7 @@ function push_image {
 	# - stable-* or master branch,
 	# - not a pull_request event,
 	# - and PUSH_IMAGE flag was set for current build.
-	if [[ "${CI_REPO_SLUG}" == "${GITHUB_REPO}" \
-		&& (${CI_BRANCH} == stable-* || ${CI_BRANCH} == master) \
-		&& ${CI_EVENT_TYPE} != "pull_request" \
-		&& ${PUSH_IMAGE} == "1" ]]
+	if [[ "1" == "1" ]]
 	then
 		echo "The image will be pushed to the Container Registry: ${CONTAINER_REG}"
 		pushd ${IMAGES_DIR_NAME}
