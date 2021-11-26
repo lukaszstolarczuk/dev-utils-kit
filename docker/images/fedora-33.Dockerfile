@@ -29,6 +29,7 @@ ARG PMDK_DEPS="\
 	daxctl-devel \
 	man \
 	ndctl-devel \
+	pandoc \
 	python3 \
 	rpm-build \
 	rpm-build-libs \
@@ -43,7 +44,7 @@ ARG VALGRIND_DEPS="\
 # Documentation (optional)
 ARG DOC_DEPS="\
 	doxygen \
-	pandoc "
+	pandoc"
 
 # Tests (optional)
 # NOTE: glibc is installed as a separate command; see below
@@ -79,6 +80,14 @@ RUN dnf update -y \
 # Install valgrind
 COPY install-valgrind.sh install-valgrind.sh
 RUN ./install-valgrind.sh
+
+# XXX
+# Install pmdk
+COPY install-pmdk.sh install-pmdk.sh
+RUN ./install-pmdk.sh
+# Install libpmemobj-cpp
+COPY install-libpmemobj-cpp.sh install-libpmemobj-cpp.sh
+RUN ./install-libpmemobj-cpp.sh
 
 # Add user
 ENV USER user

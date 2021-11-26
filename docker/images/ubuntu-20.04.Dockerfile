@@ -30,6 +30,7 @@ ARG PMDK_DEPS="\
 	libdaxctl-dev \
 	libndctl-dev \
 	man \
+	pandoc \
 	python3"
 
 # pmem's Valgrind (optional; valgrind-devel may be used instead)
@@ -80,6 +81,20 @@ RUN apt-get update \
 # Install valgrind
 COPY install-valgrind.sh install-valgrind.sh
 RUN ./install-valgrind.sh
+
+# XXX
+# Install pmdk
+COPY install-pmdk.sh install-pmdk.sh
+RUN ./install-pmdk.sh /opt/pmdk 0
+
+RUN dpkg -i /opt/pmdk-pkg/libpmemobj-dev*.deb /opt/pmdk-pkg/libpmem_*.deb \
+	/opt/pmdk-pkg/libpmem-dev_*.deb /opt/pmdk-pkg/libpmemobj_*.deb \
+	/opt/pmdk-pkg/libpmemobj-dev_*.deb
+
+# Install libpmemobj-cpp
+COPY install-libpmemobj-cpp.sh install-libpmemobj-cpp.sh
+RUN ./install-libpmemobj-cpp.sh /opt/libpmemobj-cpp
+
 
 # Add user
 ENV USER user
